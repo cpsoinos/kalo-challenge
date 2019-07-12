@@ -2,6 +2,8 @@
 
 This is a simple Rails API for querying a table of users extracted from a provided CSV.
 
+https://kalo-api-challenge.herokuapp.com/api-docs/index.html
+
 ## Installation
 
 Ruby version: `2.6.0`
@@ -32,9 +34,9 @@ To (re)generate docs:
 ```bash
 bundle exec rake rswag:specs:swaggerize
 ```
-![docs index query](/api-doc_index_query.png)
+![docs index query](https://kalo-api-challenge.herokuapp.com/api-doc_index_query.png)
 
-![docs index result](/api-doc_index_result.png)
+![docs index result](https://kalo-api-challenge.herokuapp.com/api-doc_index_result.png)
 
 ## Tests
 RSpec is one of the most popular Ruby testing frameworks.
