@@ -4,7 +4,6 @@
     "title": "API V1",
     "version": "v1"
   },
-  "base_path": "/api/v1",
   "paths": {
     "/api/v1/users": {
       "get": {
