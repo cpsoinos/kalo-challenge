@@ -8,7 +8,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.citext :timezone
       t.boolean :receive_marketing, default: false
       t.citext :external_id
-      t.citext :skills, array: true, default: []
+      t.jsonb :skills, default: []
 
       t.timestamps
     end

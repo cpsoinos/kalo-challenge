@@ -1,7 +1,18 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require 'csv'
+
+sanitize_headers = ->(header) { header.delete_prefix('_').downcase }
+cast_to_bool = ->(value) { ActiveModel::Type::Boolean.new.cast(value) }
+split_skills = ->(value) { value&.split(', ')&.flatten }
+
+options = {
+  headers: true,
+  header_converters: sanitize_headers,
+}
+
+CSV.foreach(Rails.root.join('users.csv'), options) do |row|
+  attrs = row.to_h
+  attrs['global_admin'] = cast_to_bool.(attrs['global_admin'])
+  attrs['receive_marketing'] = cast_to_bool.(attrs['receive_marketing'])
+  attrs['skills'] = split_skills.(attrs['skills'])
+  User.create(attrs)
+end

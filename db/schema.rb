@@ -23,12 +23,11 @@ ActiveRecord::Schema.define(version: 2019_07_12_020434) do
     t.citext "timezone"
     t.boolean "receive_marketing", default: false
     t.citext "external_id"
-    t.citext "skills", default: [], array: true
+    t.jsonb "skills", default: []
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["external_id"], name: "index_users_on_external_id", unique: true
-    t.index ["skills"], name: "index_users_on_skills", using: :gin
   end
 
 end
