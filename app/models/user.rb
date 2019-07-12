@@ -1,6 +1,9 @@
 class User < ApplicationRecord
+  include Filterable
+
   validates :email, uniqueness: true, allow_nil: true
   validates :external_id, uniqueness: true, allow_nil: true
+  validates :name, presence: true
 
   scope :global_admin, -> { where(global_admin: true) }
   scope :receive_marketing, -> { where(receive_marketing: true) }

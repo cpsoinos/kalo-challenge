@@ -8,12 +8,46 @@
   "paths": {
     "/api/v1/users": {
       "get": {
-        "summary": "Retrieves a list of users",
+        "summary": "Retrieves a paginated list of users",
         "tags": [
           "Users"
         ],
         "produces": [
           "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filters",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "by_timezone": {
+                  "type": "string"
+                },
+                "with_skill": {
+                  "type": "string"
+                }
+              }
+            }
+          }
         ],
         "responses": {
           "200": {

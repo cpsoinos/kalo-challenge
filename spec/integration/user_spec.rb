@@ -2,13 +2,20 @@ require 'swagger_helper'
 
 describe 'Users API' do
 
-
-
   path '/api/v1/users' do
 
-    get 'Retrieves a list of users' do
+    get 'Retrieves a paginated list of users' do
       tags 'Users'
       produces 'application/json'
+      parameter name: :page, in: :query, required: false, schema: { type: :string }
+      parameter name: :per_page, in: :query, required: false, schema: { type: :string }
+      parameter name: :filters, in: :query, required: false, schema: {
+        type: :object,
+        properties: {
+          by_timezone: { type: :string },
+          with_skill: { type: :string }
+        }
+      }
 
       response '200', 'Users found' do
         before { create_list(:user, 2) }
