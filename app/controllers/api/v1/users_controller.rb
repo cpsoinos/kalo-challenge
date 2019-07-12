@@ -3,6 +3,10 @@ class Api::V1::UsersController < ApplicationController
 
   def index
     filters = params[:filters] || {}
+    # insert `search` query into filters because it uses the same syntax as Filterable
+    if params[:search]
+      filters[:search] = params[:search]
+    end
     @users = User.filter_by(filters).page(params[:page]).per(params[:per_page])
 
     render json: @users

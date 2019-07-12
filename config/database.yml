@@ -80,6 +80,4 @@ test:
 #
 production:
   <<: *default
-  database: kalo-challenge_production
-  username: kalo-challenge
-  password: <%= ENV['KALO-CHALLENGE_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>

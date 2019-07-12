@@ -7,15 +7,18 @@ describe 'Users API' do
     get 'Retrieves a paginated list of users' do
       tags 'Users'
       produces 'application/json'
-      parameter name: :page, in: :query, required: false, schema: { type: :string }
-      parameter name: :per_page, in: :query, required: false, schema: { type: :string }
+      parameter name: :page, in: :query, required: false, schema: { type: :string }, description: 'The page number in a list of paginated results'
+      parameter name: :per_page, in: :query, required: false, schema: { type: :string }, description: 'The number of results per page'
       parameter name: :filters, in: :query, required: false, schema: {
         type: :object,
         properties: {
           by_timezone: { type: :string },
-          with_skill: { type: :string }
+          with_skill: { type: :string },
+          by_global_admin: { type: :boolean },
+          by_receive_marketing: { type: :boolean }
         }
-      }
+      }, description: 'Filter results by chosen fields. Filterable options are `by_timezone`, `with_skill`, `by_global_admin`, `by_receive_marketing`.'
+      parameter name: :search, in: :query, required: false, schema: { type: :string }, description: 'Search for records with `email`, `name`, `timezone`, `external_id`, or `skills` matching your specified criteria.'
 
       response '200', 'Users found' do
         before { create_list(:user, 2) }
@@ -117,51 +120,6 @@ describe 'Users API' do
         run_test!
       end
     end
-
-    # put 'Updates a user' do
-    #   tags 'Users'
-    #   produces 'application/json', 'application/xml'
-    #   parameter name: :id, in: :path, type: :string
-    #   parameter name: :user, in: :body, schema: {
-    #     type: :object,
-    #     properties: {
-    #       email: { type: :string },
-    #       name: { type: :string },
-    #       global_admin: { type: :boolean },
-    #       timezone: { type: :string },
-    #       receive_marketing: { type: :boolean },
-    #       external_id: { type: :string },
-    #       skills: {
-    #         type: :array,
-    #         items: { type: :string }
-    #       }
-    #     }
-    #   }
-
-    #   response '200', 'user updated' do
-    #     let(:id) { create(:user).id }
-    #     let(:user) do
-    #       {
-    #         email: Faker::Internet.email,
-    #         name: Faker::FunnyName.name,
-    #         global_admin: false,
-    #         timezone: 'EST',
-    #         receive_marketing: false,
-    #         external_id: Faker::Alphanumeric.alphanumeric(10),
-    #         skills: [
-    #           Faker::Verb.ing_form,
-    #           Faker::Verb.ing_form
-    #         ].uniq
-    #       }
-    #     end
-
-    #     after do |example|
-    #       example.metadata[:response][:examples] = { 'application/json' => JSON.parse(response.body, symbolize_names: true) }
-    #     end
-
-    #     run_test!
-    #   end
-    # end
 
     delete 'Deletes a user' do
       tags 'Users'
