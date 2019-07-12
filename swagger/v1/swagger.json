@@ -20,33 +20,45 @@
             "name": "page",
             "in": "query",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "type": "string",
+            "description": "The page number in a list of paginated results"
           },
           {
             "name": "per_page",
             "in": "query",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "type": "string",
+            "description": "The number of results per page"
           },
           {
             "name": "filters",
             "in": "query",
             "required": false,
+            "type": "object",
             "schema": {
-              "type": "object",
               "properties": {
                 "by_timezone": {
                   "type": "string"
                 },
                 "with_skill": {
                   "type": "string"
+                },
+                "by_global_admin": {
+                  "type": "boolean"
+                },
+                "by_receive_marketing": {
+                  "type": "boolean"
                 }
               }
-            }
+            },
+            "description": "Filter results by chosen fields. Filterable options are `by_timezone`, `with_skill`, `by_global_admin`, `by_receive_marketing`."
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Search for records with `email`, `name`, `timezone`, `external_id`, or `skills` matching your specified criteria."
           }
         ],
         "responses": {

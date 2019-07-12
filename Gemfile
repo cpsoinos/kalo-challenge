@@ -6,8 +6,10 @@ ruby '2.6.0'
 gem 'rails', '~> 5.2.3'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
-gem 'rswag'
+gem 'rswag-api'
+gem 'rswag-ui'
 gem 'kaminari'
+gem 'pg_search'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -38,4 +40,5 @@ end
 group :test do
   gem 'faker'
   gem 'factory_bot_rails'
+  gem 'rswag-specs'
 end

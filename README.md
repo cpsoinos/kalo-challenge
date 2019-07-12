@@ -4,6 +4,8 @@ This is a simple Rails API for querying a table of users extracted from a provid
 
 ## Installation
 
+Ruby version: `2.6.0`
+
 I chose to use PostgreSQL for the database because parsing CSV data naturally fits into a table/column format, and Postgres's native JSONB column type allows for more efficient querying for JSON or array-type data than other relational databases such as MySQL.
 
 PostgreSQL can be installed using Homebrew:
@@ -30,6 +32,9 @@ To (re)generate docs:
 ```bash
 bundle exec rake rswag:specs:swaggerize
 ```
+![docs index query](/api-doc_index_query.png)
+
+![docs index result](/api-doc_index_result.png)
 
 ## Tests
 RSpec is one of the most popular Ruby testing frameworks.
