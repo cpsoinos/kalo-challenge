@@ -7,10 +7,9 @@ describe 'Users API' do
     get 'Retrieves a paginated list of users' do
       tags 'Users'
       produces 'application/json'
-      parameter name: :page, in: :query, required: false, schema: { type: :string }, description: 'The page number in a list of paginated results'
-      parameter name: :per_page, in: :query, required: false, schema: { type: :string }, description: 'The number of results per page'
-      parameter name: :filters, in: :query, required: false, schema: {
-        type: :object,
+      parameter name: :page, in: :query, required: false, type: :string, description: 'The page number in a list of paginated results'
+      parameter name: :per_page, in: :query, required: false, type: :string, description: 'The number of results per page'
+      parameter name: :filters, in: :query, required: false, type: :object, schema: {
         properties: {
           by_timezone: { type: :string },
           with_skill: { type: :string },
@@ -18,7 +17,7 @@ describe 'Users API' do
           by_receive_marketing: { type: :boolean }
         }
       }, description: 'Filter results by chosen fields. Filterable options are `by_timezone`, `with_skill`, `by_global_admin`, `by_receive_marketing`.'
-      parameter name: :search, in: :query, required: false, schema: { type: :string }, description: 'Search for records with `email`, `name`, `timezone`, `external_id`, or `skills` matching your specified criteria.'
+      parameter name: :search, in: :query, required: false, type: :string, description: 'Search for records with `email`, `name`, `timezone`, `external_id`, or `skills` matching your specified criteria.'
 
       response '200', 'Users found' do
         before { create_list(:user, 2) }
