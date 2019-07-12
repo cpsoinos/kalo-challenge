@@ -1,24 +1,40 @@
-# README
+# Kalo Challenge
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a simple Rails API for querying a table of users extracted from a provided CSV.
 
-Things you may want to cover:
+## Installation
 
-* Ruby version
+I chose to use PostgreSQL for the database because parsing CSV data naturally fits into a table/column format, and Postgres's native JSONB column type allows for more efficient querying for JSON or array-type data than other relational databases such as MySQL.
 
-* System dependencies
+PostgreSQL can be installed using Homebrew:
+```bash
+brew install postgresql
+```
 
-* Configuration
+```bash
+bundle install
+rails db:setup # this will create, migrate, and seed your database
+```
 
-* Database creation
+## Usage
 
-* Database initialization
+Run your Rails server:
+```bash
+rails s
+```
 
-* How to run the test suite
+I chose to document the API with RSwag, a tool that can generate Swagger API documentation for Rails APIs.
+Open your browser to http://localhost:3000/api-docs
 
-* Services (job queues, cache servers, search engines, etc.)
+To (re)generate docs:
+```bash
+bundle exec rake rswag:specs:swaggerize
+```
 
-* Deployment instructions
+## Tests
+RSpec is one of the most popular Ruby testing frameworks.
 
-* ...
+Run RSpec tests using the command:
+```bash
+rspec spec
+```
