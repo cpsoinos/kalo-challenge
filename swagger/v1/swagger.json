@@ -34,7 +34,10 @@
             "in": "query",
             "required": false,
             "type": "object",
-            "schema": {
+            "style": "deep_object",
+            "explode": true,
+            "items": {
+              "type": "object",
               "properties": {
                 "by_timezone": {
                   "type": "string"
